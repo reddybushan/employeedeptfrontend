@@ -24,7 +24,11 @@
     </div>
     <div class="form-group">
         <label for="name">Salary </label>
-        <input type="text" class="form-control" id="salary" required [(ngModel)]="employee.salary" name="salary">
+        <input type="text" class="form-control" id="salary" required [(ngModel)]="employee.salary" name="salary" #salary="ngModel" pattern="[0-9]{2,10}">
+        <div *ngIf="f.submitted && salary.errors" >
+            <div *ngIf="salary.errors.required" class="alert alert-danger">salary is required</div>
+            <div *ngIf="salary.errors.pattern" class="alert alert-danger">salary should be greater than zero</div>
+        </div>
       </div>
       <div class="form-group">
         <label for="name">Phone </label>
